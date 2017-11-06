@@ -18,7 +18,7 @@ class PessimistTransactionManager implements TransactionManagerInterface
         try {
 
             $fromQuery = Account::whereId($fromAccountId);
-            if (!$fromQuery->exists()) {
+            if (! $fromQuery->exists()) {
                 throw new InvalidAccountException();
             }
 
