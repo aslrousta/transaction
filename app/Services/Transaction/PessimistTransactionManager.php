@@ -50,9 +50,11 @@ class PessimistTransactionManager implements TransactionManagerInterface
 
             DB::commit();
 
+            return $fromAccount->balance;
+
         } catch (\Exception $e) {
             DB::rollBack();
-            throw;
+            throw $e;
         }
     }
 }

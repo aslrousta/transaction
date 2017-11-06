@@ -15,7 +15,7 @@ class AccountTableSeeder extends Seeder
     {
         $now = Carbon::now();
 
-        for ($i = 1; $i <= 1000; $i++) {
+        for ($i = 1; $i <= 10; $i++) {
             DB::table('account')->insert([
                 'id'         => $i,
                 'balance'    => 1000000,

@@ -52,5 +52,7 @@ class OptimistTransactionManager implements TransactionManagerInterface
         $transaction->to_account_id   = $toAccountId;
         $transaction->amount          = $amount;
         $transaction->save();
+
+        return $fromAccount->balance - $amount;
     }
 }
