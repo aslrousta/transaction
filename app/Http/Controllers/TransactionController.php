@@ -9,6 +9,7 @@ use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Response;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Validation\ValidationException;
 
 class TransactionController extends Controller
 {
@@ -25,7 +26,12 @@ class TransactionController extends Controller
             'to'     => 'required|integer',
             'amount' => 'required|integer',
         ]);
-        $validator->validate();
+
+        try {
+            $validator->validate();
+        } catch (ValidationException $e) {
+            return Response::json(['error' => 'Validation Failed'], 412);
+        }
 
         $data   = $validator->getData();
         $from   = $data['from'];
